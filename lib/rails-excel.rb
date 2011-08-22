@@ -1,7 +1,38 @@
+require 'activesupport'
+require 'action_controller'
 require "rails-excel/version"
+require 'rails-excel/strategy'
+require 'rails-excel/delegation'
+require 'rails-excel/template_handler'
 
 module Rails
   module Excel
-    # Your code goes here...
+
+    BUILTIN_STRATEGIES = {
+      :spreadsheet => Rails::Excel::Strategies::Spreadsheet.new,
+      :write_excel => Rails::Excel::Strategies::WriteExcel.new
+    } unless const_defined?(:BUILTIN_STRATEGIES)
+
+    class << self
+      module_eval do
+
+        attr_accessor_with_default :strategy, :spreadsheet
+
+        attr_reader :available_strategies
+
+        @available_strategies = BUILTIN_STRATEGIES.dup
+
+        def add_strategy(name, klass)
+          @available_strategies[name.to_sym] = klass.new
+        end
+
+        def configure(&block)
+          yield(self)
+          ::ActionView::Base.include(Rails::Excel::Delegation::View)
+          ::ActionController::Base.include(Rails::Excel::Delegation::Controller)
+        end
+
+      end
+    end
   end
 end
