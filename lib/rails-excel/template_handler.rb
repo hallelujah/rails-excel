@@ -1,9 +1,11 @@
+require 'action_controller'
+require 'action_view'
 module Rails
   module Excel
-    class TemplateHandler < ::ActionView::TemplateHandlers::TemplateHandler
+    class TemplateHandler < ::ActionView::TemplateHandler
       include ::ActionView::TemplateHandlers::Compilable
 
-      def compile
+      def compile(template)
         %Q{
         _set_controller_content_type(Mime::XLS);
           io = StringIO.new

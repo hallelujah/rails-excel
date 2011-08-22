@@ -1,7 +1,7 @@
 require 'activesupport'
-require 'action_controller'
 require "rails-excel/version"
 require 'rails-excel/delegation'
+require 'rails-excel/strategies'
 require 'rails-excel/template_handler'
 
 module Rails
@@ -27,8 +27,8 @@ module Rails
 
         def configure(&block)
           yield(self)
-          ::ActionView::Base.include(Rails::Excel::Delegation::View)
-          ::ActionController::Base.include(Rails::Excel::Delegation::Controller)
+          ::ActionView::Base.send :include, Rails::Excel::Delegation::View
+          ::ActionController::Base.send :include,Rails::Excel::Delegation::Controller
           ActionView::Template.register_template_handler :rxls, Rails::Excel::TemplateHandler
         end
 

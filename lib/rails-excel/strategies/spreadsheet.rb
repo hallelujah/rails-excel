@@ -3,13 +3,16 @@ require 'spreadsheet'
 
 module Rails
   module Excel
+    module Strategies
 
-    class Spreadsheet
-      def compile(io, &block)
-        workbook = ::Spreadsheet::Workbook.new
-        yield
-        workbook.write(io)
+      class Spreadsheet
+        def compile(io, &block)
+          workbook = ::Spreadsheet::Workbook.new
+          yield
+          workbook.write(io)
+        end
       end
+
     end
 
   end
