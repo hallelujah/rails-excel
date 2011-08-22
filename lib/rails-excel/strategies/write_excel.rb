@@ -5,8 +5,8 @@ module Rails
 
       class WriteExcel
         def compile(io,&block)
-          workbook = ::WriteExcel::Workbook.new(io)
-          yield
+          workbook = ::WriteExcel.new(io)
+          yield(workbook)
           workbook.close
         end
       end

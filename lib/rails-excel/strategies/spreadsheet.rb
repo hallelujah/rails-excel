@@ -8,7 +8,7 @@ module Rails
       class Spreadsheet
         def compile(io, &block)
           workbook = ::Spreadsheet::Workbook.new
-          yield
+          yield(workbook)
           workbook.write(io)
         end
       end
