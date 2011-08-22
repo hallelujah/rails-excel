@@ -17,3 +17,5 @@ module ActionView
     end
   end
 end
+
+::Mime::Type.register "application/vnd.ms-excel", :xls
