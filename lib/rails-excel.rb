@@ -30,6 +30,7 @@ module Rails
           yield(self)
           ::ActionView::Base.include(Rails::Excel::Delegation::View)
           ::ActionController::Base.include(Rails::Excel::Delegation::Controller)
+          ActionView::Template.register_template_handler :rxls, Rails::Excel::TemplateHandler
         end
 
       end

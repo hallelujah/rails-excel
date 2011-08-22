@@ -1,7 +1,7 @@
-module ActionView
-  module TemplateHandlers
-    class Excel < TemplateHandler
-      include Compilable
+module Rails
+  module Excel
+    class TemplateHandler < ::ActionView::TemplateHandlers::TemplateHandler
+      include ::ActionView::TemplateHandlers::Compilable
 
       def compile
         %Q{
