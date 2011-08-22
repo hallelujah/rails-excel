@@ -1,7 +1,6 @@
 require 'activesupport'
 require 'action_controller'
 require "rails-excel/version"
-require 'rails-excel/strategy'
 require 'rails-excel/delegation'
 require 'rails-excel/template_handler'
 
