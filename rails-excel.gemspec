@@ -8,8 +8,10 @@ Gem::Specification.new do |s|
   s.authors     = ["Ramihajamalala Hery"]
   s.email       = ["hery@weborama.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{A rails gem to write excel}
+  s.description = %q{Use different strategies to write excel : available are :spreadsheet and :writeexcel
+    This implements rxls template in your rails view
+  }
 
   s.rubyforge_project = "rails-excel"
 
