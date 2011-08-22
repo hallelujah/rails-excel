@@ -15,6 +15,13 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "rails-excel"
 
+  s.add_development_dependency 'rake', '= 0.8.7'
+  s.add_development_dependency 'rspec', '~> 2.3.0'
+  s.add_development_dependency 'rcov', '~> 0.9.9'
+  s.add_development_dependency 'actionpack', '~> 2.3.0'
+  s.add_dependency 'writeexcel', '>= 0.6.8'
+  s.add_dependency 'spreadsheet', '>= 0.6.3.1'
+
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
