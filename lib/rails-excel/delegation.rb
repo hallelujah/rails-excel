@@ -14,6 +14,14 @@ module Rails
         def self.included(base)
           base.module_eval do
             class_inheritable_accessor :excel_strategy, :instance_writer => false
+            def excel_strategy
+              @excel_strategy ||= self.class.excel_strategy
+            end
+
+            def excel_strategy=(strategy)
+              @excel_strategy = strategy
+            end
+
             self.excel_strategy = ::Rails::Excel.strategy
           end
 
