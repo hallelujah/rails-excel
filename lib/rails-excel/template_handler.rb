@@ -2,18 +2,20 @@ require 'action_controller'
 require 'action_view'
 module Rails
   module Excel
-    class TemplateHandler < ::ActionView::TemplateHandler
-      include ::ActionView::TemplateHandlers::Compilable
+    class TemplateHandler 
 
+      def self.call(template, *args)
+        new.compile(template)  
+      end
+      
       def compile(template)
         %Q{
-        _set_controller_content_type(Mime::XLS);
           io = StringIO.new
           Rails::Excel.available_strategies[self.excel_strategy].compile(io) do |workbook|
             #{template.source}
           end
           self.output_buffer = io.string
-        }
+          }
       end
 
     end
