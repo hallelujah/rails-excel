@@ -14,15 +14,17 @@ It comes with two builtin strategies based on the very good gems [writeexcel](ht
 
 In your config/environment.rb
 
-    config.gem 'rails-excel'
-
+```ruby
+config.gem 'rails-excel'
+```
 
 Create an initializer : config/initializers/excel.rb
 
-    Rails::Excel.configure do |config|
-      config.strategy = :spreadsheet # by default or :write_excel
-    end
-
+```ruby
+Rails::Excel.configure do |config|
+  config.strategy = :spreadsheet # by default or :write_excel
+end
+```
 
 If you wan tot implement your own strategy, here are the requirements :
 
@@ -33,60 +35,62 @@ If you wan tot implement your own strategy, here are the requirements :
 
 Example extracted from code source:
 
-    # lib/my_strategy.rb
+```ruby
+# lib/my_strategy.rb
 
-    class MyStrategy
-      def compile(io, &block)
-        workbook = ::Spreadsheet::Workbook.new
-        yield(workbook)
-        workbook.write(io)
-      end
-    end
+class MyStrategy
+  def compile(io, &block)
+    workbook = ::Spreadsheet::Workbook.new
+    yield(workbook)
+    workbook.write(io)
+  end
+end
+```
 
 Then in your config/initializers/excel.rb
 
-
-    require 'my_strategy'
-    Rails::Excel.configure do |config|
-      config.add_strategy :my_strategy, MyStrategy.new
-      # Redefining default strategy
-      config.strategy = :my_strategy # by default it was :spreadsheet
-    end
+```ruby
+require 'my_strategy'
+Rails::Excel.configure do |config|
+  config.add_strategy :my_strategy, MyStrategy.new
+  # Redefining default strategy
+  config.strategy = :my_strategy # by default it was :spreadsheet
+end
+```
 
 You can use any object as long as it responds to described `compile` method
-
 
 The strategy defined in the initializer will be used in all of your controllers
 
 To use another strategy you can set it by controller :
 
-    class UsersController < ApplicationController
-      self.excel_strategy = :write_excel
-    end
-
+```ruby
+class UsersController < ApplicationController
+  self.excel_strategy = :write_excel
+end
+```
 
 Or you can set strategy per action by redefining instance method excel_strategy
 
-    class UsersController < ApplicationController
+```ruby
+class UsersController < ApplicationController
+  self.excel_strategy = :write_excel
+  def index
+    # ...
+  end
 
-      self.excel_strategy = :write_excel
+  def show
+    # ...
+  end
 
-      def index
-        # ...
-      end
-
-      def show
-        # ...
-      end
-
-      protected
-      def excel_strategy
-        case action_name
-        when 'index'
-          :spreadsheet
-        else
-          self.class.excel_strategy
-        end
-      end
-
+  protected
+  def excel_strategy
+    case action_name
+    when 'index'
+      :spreadsheet
+    else
+  self.class.excel_strategy
     end
+  end
+end
+```
