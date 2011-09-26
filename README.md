@@ -94,3 +94,7 @@ class UsersController < ApplicationController
   end
 end
 ```
+
+# Contributors
+
+* [edpaget](https://github.com/edpaget)
