@@ -15,7 +15,7 @@ module Rails
     class << self
       module_eval do
 
-        attr_accessor_with_default :strategy, :spreadsheet
+        attr_accessor :strategy
         attr_reader :available_strategies
 
         def add_strategy(name, instance)
