@@ -6,8 +6,8 @@ It comes with two builtin strategies based on the very good gems [writeexcel](ht
 
 # Requirements
 
-* rails ~> '2.3.0'
-* ruby ~> '1.8.6'
+* rails >= 2.3.0
+* ruby >= '1.8.6'
 
 
 # Usage
