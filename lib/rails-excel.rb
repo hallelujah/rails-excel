@@ -21,10 +21,6 @@ module Rails
 end
 
 module RailsExcel
-  BUILTIN_STRATEGIES = {
-    :spreadsheet => RailsExcel::Strategies::Spreadsheet,
-    :write_excel => RailsExcel::Strategies::WriteExcel
-  } unless const_defined?(:BUILTIN_STRATEGIES)
 
   class << self
     module_eval do
@@ -38,9 +34,6 @@ module RailsExcel
 
       def configure(&block)
         @available_strategies = Hash.new
-        BUILTIN_STRATEGIES.each do |k,v|
-          add_strategy k, v.new
-        end
         yield(self)
         ::ActionView::Base.send :include, RailsExcel::Delegation::View
         ::ActionController::Base.send :include,RailsExcel::Delegation::Controller
