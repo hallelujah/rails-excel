@@ -13,7 +13,11 @@ module RailsExcel
       attr_reader :available_strategies
 
       def add_strategy(name, instance)
-        @available_strategies[name.to_sym] = instance
+        strategy = instance
+        if Class === instance && !instance.respond_to?(:compile)
+          strategy = instance.new
+        end
+        @available_strategies[name.to_sym] = strategy
       end
 
       def configure(&block)
