@@ -3,23 +3,8 @@ require "rails-excel/version"
 require 'rails-excel/delegation'
 require 'rails-excel/template_handler'
 
-module Rails
-  module Excel
-    class << self
-      module_eval do
-        %w{add_strategy configure}.each do |m|
-          define_method m do |*args|
-            ActiveSupport::Deprecation.warn("Rails::Excel is deprecated in favor of RailsExcel",caller)
-            RailsExcel.send(m, *args)
-          end
-        end
-      end
-    end
-
-  end
-end
-
 module RailsExcel
+  @available_strategies = Hash.new
 
   class << self
     module_eval do
@@ -32,7 +17,6 @@ module RailsExcel
       end
 
       def configure(&block)
-        @available_strategies = Hash.new
         yield(self)
         ::ActionView::Base.send :include, RailsExcel::Delegation::View
         ::ActionController::Base.send :include,RailsExcel::Delegation::Controller
@@ -43,3 +27,23 @@ module RailsExcel
   end
 
 end
+
+module Rails
+  module Excel
+    class << self
+      module_eval do
+        def add_strategy(name, instance)
+          ActiveSupport::Deprecation.warn("Rails::Excel is deprecated in favor of RailsExcel",caller)
+          RailsExcel.add_strategy(name, instance)
+        end
+        def configure(&block)
+          ActiveSupport::Deprecation.warn("Rails::Excel is deprecated in favor of RailsExcel",caller)
+          RailsExcel.configure(&block)
+        end
+      end
+    end
+
+  end
+end
+
+
