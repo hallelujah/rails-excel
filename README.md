@@ -95,6 +95,20 @@ class UsersController < ApplicationController
 end
 ```
 
+Or you can also override excel_strategy by action like that :
+
+```ruby
+class UsersController < ApplicationController
+  self.excel_strategy = :write_excel
+
+  def other_action
+    self.excel_strategy = :rubyXL
+    # ...
+  end
+
+end
+```
+
 # Contributors
 
 * [edpaget](https://github.com/edpaget)
