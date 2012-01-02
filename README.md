@@ -11,7 +11,7 @@ Prior to 1.0.0, it comes with two builtin strategies based on the very good gems
 As of 1.0.0, there is no builtin strategy anymore. You should install at least one strategy :
 
 * [spreadsheet](https://github.com/hallelujah/rails-excel-spreadsheet-strategy)
-* [write_excel](https://github.com/hallelujah/rails-excel-write_excel-strategy)
+* [write_excel](https://github.com/hallelujah/rails-excel-writeexcel-strategy)
 * [rubyXL](https://github.com/hallelujah/rails-excel-rubyXL-strategy)
 
 
