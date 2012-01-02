@@ -4,7 +4,7 @@ require "rails-excel/version"
 
 Gem::Specification.new do |s|
   s.name        = "rails-excel"
-  s.version     = Rails::Excel::VERSION
+  s.version     = RailsExcel::VERSION
   s.authors     = ["Ramihajamalala Hery"]
   s.email       = ["hery@weborama.com"]
   s.homepage    = ""
