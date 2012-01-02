@@ -2,7 +2,19 @@
 
 It adds support of .rxls templates for your rails views
 
-It comes with two builtin strategies based on the very good gems [writeexcel](https://github.com/cxn03651/writeexcel) and [spreadsheet](http://spreadsheet.rubyforge.org/index.html)
+[DEPRECATED]
+
+Prior to 1.0.0, it comes with two builtin strategies based on the very good gems [writeexcel](https://github.com/cxn03651/writeexcel) and [spreadsheet](http://spreadsheet.rubyforge.org/index.html)
+
+[IMPORTANT]
+
+As of 1.0.0, there is no builtin strategy anymore. You should install at least one strategy :
+
+* [spreadsheet](https://github.com/hallelujah/rails-excel-spreadsheet-strategy)
+* [write_excel](https://github.com/hallelujah/rails-excel-write_excel-strategy)
+* [rubyXL](https://github.com/hallelujah/rails-excel-rubyXL-strategy)
+
+
 
 # Requirements
 
@@ -92,6 +104,20 @@ class UsersController < ApplicationController
   self.class.excel_strategy
     end
   end
+end
+```
+
+Or you can also override excel_strategy by action like that :
+
+```ruby
+class UsersController < ApplicationController
+  self.excel_strategy = :write_excel
+
+  def other_action
+    self.excel_strategy = :rubyXL
+    # ...
+  end
+
 end
 ```
 
