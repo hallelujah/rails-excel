@@ -1,5 +1,3 @@
-module Rails
-  module Excel
-    VERSION = "0.0.3"
-  end
+module RailsExcel
+  VERSION = "0.0.4"
 end
