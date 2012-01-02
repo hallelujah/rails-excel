@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "rails-excel"
   s.version     = RailsExcel::VERSION
   s.authors     = ["Ramihajamalala Hery"]
-  s.email       = ["hery@weborama.com"]
-  s.homepage    = ""
+  s.email       = ["hery@rails-royce.org"]
+  s.homepage    = "https://github.com/hallelujah/rails-excel"
   s.summary     = %q{A rails gem to write excel}
   s.description = %q{Use different strategies to write excel : available are :spreadsheet and :writeexcel
     This implements rxls template in your rails view
@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 2.3.0'
   s.add_development_dependency 'rcov', '~> 0.9.9'
   s.add_development_dependency 'actionpack', '~> 2.3.0'
-  s.add_dependency 'writeexcel', '>= 0.6.8'
-  s.add_dependency 'spreadsheet', '>= 0.6.3.1'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
