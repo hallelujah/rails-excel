@@ -21,7 +21,7 @@ config.gem 'rails-excel'
 Create an initializer : config/initializers/excel.rb
 
 ```ruby
-Rails::Excel.configure do |config|
+RailsExcel.configure do |config|
   config.strategy = :spreadsheet # by default or :write_excel
 end
 ```
@@ -51,7 +51,7 @@ Then in your config/initializers/excel.rb
 
 ```ruby
 require 'my_strategy'
-Rails::Excel.configure do |config|
+RailsExcel.configure do |config|
   config.add_strategy :my_strategy, MyStrategy.new
   # Redefining default strategy
   config.strategy = :my_strategy # by default it was :spreadsheet
