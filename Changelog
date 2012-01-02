@@ -1,5 +1,6 @@
-2012-01-02  Hallelujah - Ramihajamalala Hery <hery@rails-royce.org> v1.0.0
+2012-01-02  Hallelujah - Ramihajamalala Hery <hery@rails-royce.org>
 
+	* Fix @available_strategies not set : v1.0.2
 	* Fix requiring of strategies : v1.0.1
 	* Remove builtin strategies : v1.0.0
 	* Deprecate Rails::Excel in favor of RailsExcel v0.0.4
