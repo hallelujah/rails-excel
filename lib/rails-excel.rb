@@ -10,7 +10,7 @@ module Rails
       module_eval do
         %w{add_strategy configure}.each do |m|
           define_method m do |*args|
-            ActiveSupport::Deprecation.warn("Rails:Excel is deprecated in favor of RailsExcel",caller)
+            ActiveSupport::Deprecation.warn("Rails::Excel is deprecated in favor of RailsExcel",caller)
             RailsExcel.send(m, *args)
           end
         end
@@ -22,8 +22,8 @@ end
 
 module RailsExcel
   BUILTIN_STRATEGIES = {
-    :spreadsheet => Rails::Excel::Strategies::Spreadsheet,
-    :write_excel => Rails::Excel::Strategies::WriteExcel
+    :spreadsheet => RailsExcel::Strategies::Spreadsheet,
+    :write_excel => RailsExcel::Strategies::WriteExcel
   } unless const_defined?(:BUILTIN_STRATEGIES)
 
   class << self
@@ -42,9 +42,9 @@ module RailsExcel
           add_strategy k, v.new
         end
         yield(self)
-        ::ActionView::Base.send :include, Rails::Excel::Delegation::View
-        ::ActionController::Base.send :include,Rails::Excel::Delegation::Controller
-        ActionView::Template.register_template_handler :rxls, Rails::Excel::TemplateHandler
+        ::ActionView::Base.send :include, RailsExcel::Delegation::View
+        ::ActionController::Base.send :include,RailsExcel::Delegation::Controller
+        ActionView::Template.register_template_handler :rxls, RailsExcel::TemplateHandler
       end
 
     end

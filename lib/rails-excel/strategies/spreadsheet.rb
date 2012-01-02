@@ -1,22 +1,21 @@
 require 'spreadsheet'
 
 
-module Rails
-  module Excel
-    module Strategies
+module RailsExcel
+  module Strategies
 
-      class Spreadsheet
-        def compile(io, &block)
-          workbook = ::Spreadsheet::Workbook.new
-          yield(workbook)
-          workbook.write(io)
-        end
+    class Spreadsheet
+      def compile(io, &block)
+        workbook = ::Spreadsheet::Workbook.new
+        yield(workbook)
+        workbook.write(io)
       end
-
     end
 
   end
+
 end
+
 # This extends colors for spreadsheet gem
 # See http://dmcritchie.mvps.org/excel/colors.htm#dpalette
 
